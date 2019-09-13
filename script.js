@@ -1,9 +1,9 @@
 const imageUpload = document.getElementById('imageUpload')
 
 Promise.all([
-    faceapi.nets.faceRecognitionNet.loadFromUri('/modele'),
-    faceapi.nets.faceLandmark68Net.loadFromUri('/modele'),
-    faceapi.nets.ssdMobilenetv1.loadFromUri('/modele')
+    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+    faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
 ]).then(start)
 
 async function start() {
@@ -45,6 +45,7 @@ function loadLabeledImages() {
                 const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
                 descriptions.push(detections.descriptor)
             }
+
             return new faceapi.LabeledFaceDescriptors(label, descriptions)
         })
     )
